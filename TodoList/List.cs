@@ -161,11 +161,14 @@ namespace TodoList
         }
         public void Show()
         {
+            int i = 1;
             foreach (var c in this)
             {
-                Console.Write(c + "\t");
+                Console.WriteLine($"{i++} .hj {c} \t");
+                
+                
             }
-            Console.WriteLine();
+            
         }
 
         

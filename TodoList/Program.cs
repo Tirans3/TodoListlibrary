@@ -10,6 +10,9 @@ namespace TodoList
     {
         static void Main(string[] args)
         {
+            TodoLibrary st = new TodoLibrary();
+            Console.ReadKey();
+            
         }
     }
 }
