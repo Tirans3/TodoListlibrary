@@ -14,39 +14,36 @@ namespace TodoList
         {
             
             Console.ResetColor();
-            Console.WriteLine("To Add note enter            - F1\n\n" +
+            Console.WriteLine(
 
-                              "To See all activ notes enter - F2\n\n" +
+                              "To See all activ notes enter - F1\n\n" +
 
-                              "To Remove any notes enter    - F3\n\n" +
+                              "To Remove any notes enter    - F2\n\n" +
 
-                              "To Complet list enter        - F4\n");
-            f
+                              "To Complet list enter        - F3\n");
+            
                              
             Console.WriteLine($"{mylist.Count}  Items\n");
             ConsoleKeyInfo key = Console.ReadKey();
 
             switch (key.Key)
             {
+                
                 case ConsoleKey.F1:
-                    Add();
+                   Show();
                     break;
                 case ConsoleKey.F2:
-                    All();
-                    break;
-                case ConsoleKey.F3:
                     Remove();
                     break;
-                case ConsoleKey.F4:
-                    break;
-                case ConsoleKey.F5:
+                case ConsoleKey.F3:
+                   Complet();
                     break;
                 default:
-                    Console.WriteLine("Enter corect Key");
+                    Add();
                     break;
 
             }
-
+            
         }
 
         public TodoLibrary()
@@ -67,8 +64,9 @@ namespace TodoList
 
         }
 
-        void All()
+        void Show()
         {
+            
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Yellow;
             mylist.Show();
@@ -79,15 +77,13 @@ namespace TodoList
             Console.WriteLine("Enter note number you wont remove");
             int i = int.Parse(Console.ReadLine());
             mylist.Remove(mylist[--i]);
-            All();
+            Show();
         }
-        void Complet()
-        {
+            void Complet()
+            {
             Console.Clear();
-            Add();
-        }
-        
-            
+            Welcome();
+            }
 
     }
 }

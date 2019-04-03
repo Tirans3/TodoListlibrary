@@ -102,9 +102,16 @@ namespace TodoList
                     }
                     else
                     {
-                        head = head.Next;
+
                         if (head.Next == null)
+                        {
+                            head = null;
                             tail = null;
+                        }
+                        else
+                        {
+                            head = head.Next;
+                        }
                     }
                     Count--;
                     return true;
