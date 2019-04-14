@@ -11,12 +11,21 @@
                 int count = 0; int i = 0;
                 while (i != mylist.Count)
                 {
-                    count = mylist[i]._IsComplect? count++ : ++i;
+                    count = mylist[i]._IsComplect ? count++ : ++i;
                 }
                 return count;
             }
         }
 
+        public void Remove(int i)
+        {
+            mylist.Remove(mylist[i]);
+        }
+
+        public void ClearCompleted()
+        {
+            mylist.Action(T => T._IsComplect);
+        }
 
         public void Add(string str)
         {
@@ -30,10 +39,10 @@
 
         public MyList<Task> Active()
         {
-            MyList < Task > temp= new MyList<Task>();
-            foreach(Task item in mylist)
+            MyList<Task> temp = new MyList<Task>();
+            foreach (Task item in mylist)
             {
-                if(!item._IsComplect)
+                if (!item._IsComplect)
                 {
                     temp.Add(item);
                 }
