@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TodoList
 {
-    public class MyList<T> : IEnumerable<T>
+    public class MyList<T>
     {
-        public Node<T> head;
-        public Node<T> tail;
 
-        public int Count { get; set; } 
+        Node<T> head;
+        Node<T> tail;
+
+        public int Count { get; set; }
         public bool IsEmpty { get { return Count == 0; } }
 
         public void Add(T data)
@@ -84,8 +81,9 @@ namespace TodoList
         {
         }
 
-        public bool Remove(T data)
+        public void Remove(T data)
         {
+            if (!Contains(data)) return;
             Node<T> current = head;
             Node<T> prev = null;
             while (current != null)
@@ -98,30 +96,25 @@ namespace TodoList
 
                         if (current.Next == null)
                             tail = prev;
-
+                        Count--;
+                        break;
                     }
                     else
                     {
+                        head = head.Next;
+                        Count--;
+                        break;
 
-                        if (head.Next == null)
-                        {
-                            head = null;
-                            tail = null;
-                        }
-                        else
-                        {
-                            head = head.Next;
-                        }
                     }
-                    Count--;
-                    return true;
+
+
                 }
                 prev = current;
-                current = current.Next; ;
+                current = current.Next;
 
 
             }
-            return false;
+
         }
 
 
@@ -171,30 +164,18 @@ namespace TodoList
             int i = 1;
             foreach (var c in this)
             {
-                Console.WriteLine($"{i++} .hj {c} \t");
-                
-                
+                Console.WriteLine($"{i}" + c); i++;
             }
-            
-        }
 
-        
-
-        IEnumerator<T> IEnumerable<T>.GetEnumerator()
-        {
-            Node<T> current = head;
-            while (current != null)
-            {
-                yield return current.Data;
-                current = current.Next;
-            }
         }
 
         public IEnumerator GetEnumerator()
         {
-            
-            return ((IEnumerable<T>)this).GetEnumerator();
+            int i = 0;
+            while (i != Count)
+                yield return this[i++];
+
         }
     }
-    
+
 }
