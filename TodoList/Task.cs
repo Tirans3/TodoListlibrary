@@ -9,13 +9,14 @@ namespace TodoList
     class Task
     {
         public string _Task { get; set; }
-        
-        public bool _IsComplect { get; set; }
+
+        public bool _IsComplect { get; set; } = false;
 
         public Task(string str)
         {
             _Task = str;
         }
-            
+       
+
     }
 }
