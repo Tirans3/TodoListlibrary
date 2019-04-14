@@ -4,6 +4,8 @@
     {
         public MyList<Task> mylist = new MyList<Task>();
 
+        public int Count{ get => mylist.Count; }
+
         public int ItemLeft
         {
             get
@@ -16,7 +18,13 @@
                 return count;
             }
         }
-
+        public string this[int i]
+        {
+            get
+            {
+                return mylist[i]._Task;
+            }
+        }
         public void Remove(int i)
         {
             mylist.Remove(mylist[i]);
