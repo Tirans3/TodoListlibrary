@@ -28,12 +28,12 @@ namespace TodoList
 
             get
             {
-                if (i > Count || i < 0)
-                    throw new IndexOutOfRangeException("Input Correct index ");
+                if (i > Count || i < 1)
+                    throw new IndexOutOfRangeException();
                 else
                 {
                     Node<T> temp = head;
-                    int t = 0;
+                    int t = 1;
                     do
                     {
                         if (i == t) return temp.Data;
@@ -51,8 +51,6 @@ namespace TodoList
                     throw new Exception("Input Correct oject ");
                 else
                 {
-
-
                     Node<T> temp = head;
                     int t = 0;
                     while (i != t)
@@ -64,21 +62,6 @@ namespace TodoList
                 }
 
             }
-        }
-
-        public MyList(int t)
-        {
-
-
-            for (int i = 0; i < t; i++)
-            {
-
-                Add(default(T));
-            }
-        }
-
-        public MyList()
-        {
         }
 
         public void Remove(T data)
@@ -171,9 +154,13 @@ namespace TodoList
 
         public IEnumerator GetEnumerator()
         {
-            int i = 0;
-            while (i != Count)
-                yield return this[i++];
+            int i = 1;
+            while (i <= Count)
+            {
+                yield return this[i];
+                i++;
+            }
+               
 
         }
     }

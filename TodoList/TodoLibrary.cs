@@ -1,10 +1,19 @@
-﻿namespace TodoList
+﻿using System;
+namespace TodoList
 {
     class TodoLibrary
     {
         public MyList<Task> mylist = new MyList<Task>();
 
         public int Count{ get => mylist.Count; }
+
+        public Task this[int i]
+        {
+            get
+            {
+                return mylist[i];
+            }
+        }
 
         public int ItemLeft
         {
@@ -18,13 +27,12 @@
                 return count;
             }
         }
-        public string this[int i]
+
+        public void Complect(int i)
         {
-            get
-            {
-                return mylist[i]._Task;
-            }
+            this[i]._IsComplect = true;
         }
+
         public void Remove(int i)
         {
             mylist.Remove(mylist[i]);
@@ -40,12 +48,12 @@
             mylist.Add(new Task(str));
         }
 
-        public MyList<Task> All()
+        public TodoLibrary All()
         {
-            return mylist;
+            return new TodoLibrary() { mylist=mylist};
         }
 
-        public MyList<Task> Active()
+        public TodoLibrary Active()
         {
             MyList<Task> temp = new MyList<Task>();
             foreach (Task item in mylist)
@@ -55,11 +63,13 @@
                     temp.Add(item);
                 }
             }
-            return temp;
+            return new TodoLibrary() { mylist=temp};
         }
-        public MyList<Task> Complected()
+
+        public TodoLibrary Complected()
         {
             MyList<Task> temp = new MyList<Task>();
+
             foreach (Task item in mylist)
             {
                 if (item._IsComplect)
@@ -67,7 +77,9 @@
                     temp.Add(item);
                 }
             }
-            return temp;
+            return new TodoLibrary() { mylist = temp };
         }
+
+       
     }
 }
